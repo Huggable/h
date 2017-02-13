@@ -6,13 +6,13 @@
 
 void head(int LineNum, int fd)
 {
-	char buf[200];
+	char buf[2000];
 	int line = 0;
 	int n = read(fd, buf, sizeof(buf));
-
+	int i = 0;
 	while(n > 0 && line < LineNum)
 	{
-		for(int i = 0;i <= n && line < LineNum; i++)
+		for(i = 0;i <= n && line < LineNum; i++)
 		{
 			if(buf[i]!='\n')
 			{
