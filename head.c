@@ -4,49 +4,40 @@
 
 
 
-void head(int x, int fd, char *name,char *buf)
+void head(int LineNum, int fd)
 {
-  int i, n;
-  int l, w, c;
+	char buf[200];
+	int line = 0;
+	int n = read(fd, buf, sizeof(buf));
 
-  l = w = c = 0;
-
-  while((n = read(fd, buf, sizeof(buf))) > 0 && l<x)
-  {
-  	
-    for(i=0;i<=n && l<x;i++)
-    {
-      if(buf[i]!='\n')
-      {
-      	printf(1,"%c",buf[i]);
-      }		
-      else
-      {
-      	printf(1,"\n");
-      	l++;
-      }
-      
-      
-      
-    }
-    // printf(1,"hey there : %d\n",l);
-
-  }
-  if(n < 0)
-  {
-    printf(1, "head: read error\n");
-    exit();
-  }
-  // printf(1, "%d %d %d %s\n", l, w, c, name);
+	while(n > 0 && line < LineNum)
+	{
+		for(int i = 0;i <= n && line < LineNum; i++)
+		{
+			if(buf[i]!='\n')
+			{
+				printf(1,"%c",buf[i]);
+			}		
+			else
+			{
+				printf(1,"\n");
+				line++;
+			}   
+		}
+		n = read(fd, buf, sizeof(buf));
+	}
+	if(n < 0)
+	{
+		printf(1, "ERROR");
+		exit();
+	}
 }
 
 int main(int argc, char *argv[])
 {
-	char buf[2000];
-
 	if(argc == 1)
 	{
-		head(10,0,"",buf);
+		head(10,0);
 		exit();
 	}
 
@@ -55,7 +46,7 @@ int main(int argc, char *argv[])
 		int fd = open(argv[1], 0);
 		if(fd >= 0)
 		{
-			head(10,fd,argv[1],buf);
+			head(10,fd);
 		}
 		else
 		{
@@ -77,7 +68,7 @@ int main(int argc, char *argv[])
 		int fd = open(argv[2],0);
 		if(fd >= 0)
 		{
-			head(atoi(num),fd,argv[2],buf);
+			head(atoi(num),fd);
 		}
 		else
 		{
