@@ -4,7 +4,7 @@
 
 
 
-void head(int LineNum, int fd)
+void ReadtheFile(int LineNum, int fd)
 {
 	char buf[2000];
 	int line = 0;
@@ -37,7 +37,7 @@ int main(int argc, char *argv[])
 {
 	if(argc == 1)
 	{
-		head(10,0);
+		ReadtheFile(10,0);
 		exit();
 	}
 
@@ -46,7 +46,7 @@ int main(int argc, char *argv[])
 		int fd = open(argv[1], 0);
 		if(fd >= 0)
 		{
-			head(10,fd);
+			ReadtheFile(10,fd);
 		}
 		else
 		{
@@ -68,7 +68,7 @@ int main(int argc, char *argv[])
 		int fd = open(argv[2],0);
 		if(fd >= 0)
 		{
-			head(atoi(num),fd);
+			ReadtheFile(atoi(num),fd);
 		}
 		else
 		{
