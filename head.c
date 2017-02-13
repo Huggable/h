@@ -6,7 +6,7 @@
 
 void ReadtheFile(int LineNum, int fd)
 {
-	char buf[2000];
+	char buf[100*LineNum];
 	int line = 0;
 	int n = read(fd, buf, sizeof(buf));
 	int i = 0;
