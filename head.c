@@ -14,15 +14,12 @@ void ReadtheFile(int LineNum, int fd)
 	{
 		for(i = 0;i <= n && line < LineNum; i++)
 		{
-			if(buf[i]!='\n')
+			printf(1,"%c",buf[i]);
+			if(buf[i]=='\n')
 			{
-				printf(1,"%c",buf[i]);
-			}		
-			else
-			{
-				printf(1,"\n");
 				line++;
-			}   
+			}		
+			
 		}
 		n = read(fd, buf, sizeof(buf));
 	}
