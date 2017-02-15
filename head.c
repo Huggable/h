@@ -6,11 +6,11 @@
 
 void ReadtheFile(int LineNum, int fd)
 {
-	char buf[100*LineNum];
+	char buf[sizeof(char)*100*LineNum];
 	int line = 0;
 	int n = read(fd, buf, sizeof(buf));
 	int i = 0;
-	while(n > 0 && line < LineNum)
+	if(n >= 0)
 	{
 		for(i = 0;i <= n && line < LineNum; i++)
 		{
@@ -24,8 +24,8 @@ void ReadtheFile(int LineNum, int fd)
 				line++;
 			}   
 		}
-		n = read(fd, buf, sizeof(buf));
 	}
+	
 	if(n < 0)
 	{
 		printf(1, "ERROR");
